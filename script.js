@@ -1,3 +1,4 @@
+// Kutipan bahasa Indonesia
 const quotes = [
     "Teruslah belajar, jangan berhenti.",
     "Kesuksesan datang dari usaha kecil yang konsisten.",
@@ -11,23 +12,26 @@ const quotes = [
     "Bermimpi besar, mulai dari langkah kecil."
 ];
 
+// Warna bubble gradasi acak
 const colors = [
-    "linear-gradient(135deg, #ff7eb3, #ff758c)",
-    "linear-gradient(135deg, #6a85b6, #bac8e0)",
-    "linear-gradient(135deg, #42e695, #3bb2b8)",
     "linear-gradient(135deg, #ff9a9e, #fad0c4)",
-    "linear-gradient(135deg, #a18cd1, #fbc2eb)",
-    "linear-gradient(135deg, #fddb92, #d1fdff)"
+    "linear-gradient(135deg, #a1c4fd, #c2e9fb)",
+    "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
+    "linear-gradient(135deg, #84fab0, #8fd3f4)",
+    "linear-gradient(135deg, #fccb90, #d57eeb)",
+    "linear-gradient(135deg, #ffecd2, #fcb69f)",
+    "linear-gradient(135deg, #ff8177, #ff867a)",
+    "linear-gradient(135deg, #6a11cb, #2575fc)"
 ];
 
 document.body.addEventListener("click", (e) => {
     const bubble = document.createElement("div");
     bubble.className = "bubble";
 
-    // Kutipan acak
+    // Pilih kutipan acak
     bubble.innerText = quotes[Math.floor(Math.random() * quotes.length)];
 
-    // Posisi awal
+    // Posisi klik
     bubble.style.left = `${e.clientX}px`;
     bubble.style.top = `${e.clientY}px`;
 
@@ -39,6 +43,7 @@ document.body.addEventListener("click", (e) => {
 
     document.body.appendChild(bubble);
 
+    // Hapus bubble setelah 5 detik
     setTimeout(() => {
         bubble.remove();
     }, 5000);
