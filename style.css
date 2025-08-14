@@ -4,7 +4,9 @@ body {
     overflow: hidden;
     cursor: pointer;
     font-family: Arial, sans-serif;
-    background: linear-gradient(270deg, #1a1a1a, #0e0e0e, #1a1a1a);
+
+    /* Background gradasi neon bergerak */
+    background: linear-gradient(270deg, #ff00cc, #3333ff, #00ffff);
     background-size: 600% 600%;
     animation: bgMove 20s ease infinite;
 }
@@ -23,8 +25,8 @@ body {
     backdrop-filter: blur(5px);
     animation: floatUp 5s ease-out forwards;
     white-space: nowrap;
-    box-shadow: 0 0 10px rgba(255,255,255,0.4);
-    text-shadow: 0 0 8px rgba(255,255,255,0.7);
+    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+    text-shadow: 0 0 10px rgba(255,255,255,0.9);
 }
 
 @keyframes floatUp {
