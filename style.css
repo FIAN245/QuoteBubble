@@ -7,6 +7,7 @@ body {
     background-size: 800% 800%;
     animation: bgMove 20s ease infinite;
     cursor: pointer;
+    font-family: Arial, sans-serif;
 }
 
 @keyframes bgMove {
@@ -24,7 +25,6 @@ body {
     backdrop-filter: blur(5px);
     animation: floatUp 5s ease-out forwards;
     white-space: nowrap;
-    background: rgba(0,0,0,0.3);
     box-shadow: 0 0 15px rgba(255,255,255,0.6);
 
     /* Outline hitam + glow putih */
@@ -34,6 +34,11 @@ body {
         -1px  1px 0 #000,
          1px  1px 0 #000,
          0 0 10px rgba(255,255,255,0.9);
+
+    /* Font responsif untuk layar kecil */
+    font-size: clamp(14px, 2vw, 18px);
+    max-width: 90%;
+    word-wrap: break-word;
 }
 
 @keyframes floatUp {
@@ -41,8 +46,11 @@ body {
         transform: translateY(0);
         opacity: 1;
     }
+    50% {
+        transform: translateY(-75px) translateX(10px);
+    }
     100% {
-        transform: translateY(-200px);
+        transform: translateY(-200px) translateX(-10px);
         opacity: 0;
     }
 }
