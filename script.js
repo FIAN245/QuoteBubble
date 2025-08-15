@@ -21,43 +21,46 @@ const colors = [
     "linear-gradient(135deg, #6a11cb, #2575fc)"
 ];
 
-// Fungsi buat bubble
+let ignoreClick = false; // flag mencegah double bubble di mobile
+
 function createBubble(text, x, y) {
     const bubble = document.createElement("div");
     bubble.classList.add("bubble");
     bubble.innerText = text;
 
-    // Pastikan bubble tetap di dalam viewport
-    const bubbleWidth = 200; // perkiraan
-    const bubbleHeight = 50; // perkiraan
+    const bubbleWidth = 200;
+    const bubbleHeight = 50;
     const posX = Math.min(x, window.innerWidth - bubbleWidth);
     const posY = Math.min(y, window.innerHeight - bubbleHeight);
 
     bubble.style.left = `${posX}px`;
     bubble.style.top = `${posY}px`;
-
-    // Warna acak
     bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
 
     document.body.appendChild(bubble);
 
-    // Hapus setelah animasi
     setTimeout(() => {
         bubble.remove();
     }, 5000);
 }
 
-// Event klik desktop
-document.addEventListener("click", (e) => {
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    createBubble(randomQuote, e.clientX, e.clientY);
-});
-
-// Event sentuh mobile
+// Event touch untuk mobile
 document.addEventListener("touchstart", (e) => {
     if (e.touches.length > 0) {
         const touch = e.touches[0];
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
         createBubble(randomQuote, touch.clientX, touch.clientY);
+        ignoreClick = true;       // cegah double bubble
+        e.preventDefault();       // hentikan click default setelah touch
     }
+}, {passive: false});
+
+// Event click untuk desktop
+document.addEventListener("click", (e) => {
+    if (ignoreClick) {
+        ignoreClick = false; // reset flag tanpa memunculkan bubble
+        return;
+    }
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    createBubble(randomQuote, e.clientX, e.clientY);
 });
